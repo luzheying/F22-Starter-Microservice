@@ -10,15 +10,16 @@ class ColumbiaStudentResource:
 
     @staticmethod
     def _get_connection():
-
-        usr = os.environ.get("DBUSER")
-        pw = os.environ.get("DBPW")
-        h = os.environ.get("DBHOST")
+        #
+        # usr = os.environ.get("DBUSER")
+        # pw = os.environ.get("DBPW")
+        # h = os.environ.get("DBHOST")
 
         conn = pymysql.connect(
-            user=usr,
-            password=pw,
-            host=h,
+            user="root",
+            password="Lzy646898.",
+            host="cloud-computing-database.czwmchdoot00.us-east-1.rds.amazonaws.com",
+            port=3306,
             cursorclass=pymysql.cursors.DictCursor,
             autocommit=True
         )
@@ -27,7 +28,7 @@ class ColumbiaStudentResource:
     @staticmethod
     def get_by_key(key):
 
-        sql = "SELECT * FROM f22_databases.columbia_students where guid=%s";
+        sql = "SELECT * FROM f22_databases.columbia_student where uni=%s";
         conn = ColumbiaStudentResource._get_connection()
         cur = conn.cursor()
         res = cur.execute(sql, args=key)
